@@ -1,6 +1,6 @@
 import * as glob from 'glob';
 import { promisify } from 'util';
-import { Client, MessageEmbedOptions, Message, Intents, Collection } from 'discord.js';
+import { Client, MessageEmbedOptions, Message, MessageEmbed, Intents, Collection } from 'discord.js';
 
 import { Config } from '../interfaces/Config';
 import { Command } from '../interfaces/Command';
@@ -34,7 +34,13 @@ class Bot extends Client {
             this.events.set(file.name, file);
             this.on(file.name, file.run.bind(null, this));
         });
+    };
+    public embed(options: MessageEmbedOptions, message: Message): MessageEmbed {
+        return new MessageEmbed({ ...options, color: 'RANDOM' }).setFooter(
+            `${message.author.tag} | ${this.user?.username}`, 
+            message.author.displayAvatarURL({ format: 'png', dynamic: true})
+        );
     }
-}
+};
 
 export { Bot };
