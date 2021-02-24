@@ -1,0 +1,26 @@
+{
+  "name": "mechadoom",
+  "version": "1.0.0",
+  "description": "Entertaining Discord Bot",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord.js",
+    "typescript"
+  ],
+  "author": "Doomer",
+  "license": "MIT",
+  "dependencies": {
+    "consola": "^2.15.3",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "glob": "^7.1.6"
+  },
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.2.2"
+  }
+}
