@@ -1,5 +1,4 @@
-import consola, { Consola } from 'consola';
-import glob from 'glob';
+import * as glob from 'glob';
 import { promisify } from 'util';
 import { Client, MessageEmbedOptions, Message, Intents, Collection } from 'discord.js';
 
@@ -10,13 +9,13 @@ import { Event } from '../interfaces/Event';
 const globPromise = promisify(glob);
 
 class Bot extends Client {
-    public logger: Consola = consola;
+    public config!: Config;
     public commands: Collection<string, Command> = new Collection();
     public events: Collection<string, Event> = new Collection();
     public constructor() {
         super({ ws: { intents: Intents.ALL }, messageCacheLifetime: 180, messageCacheMaxSize: 200, messageEditHistoryMaxSize: 200, messageSweepInterval: 180 });
     };
-    public async start(config: Config): void {
+    public async start(config: Config): Promise<void> {
         this.config = config;
         this.login(config.token);
 

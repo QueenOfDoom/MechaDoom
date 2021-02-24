@@ -2,9 +2,9 @@
   "name": "mechadoom",
   "version": "1.0.0",
   "description": "Entertaining Discord Bot",
-  "main": "app.ts",
+  "main": "build/app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "ts-node-dev -r tsconfig-paths/register --no-notify src/app.ts"
   },
   "keywords": [
     "discord.js",
@@ -19,8 +19,11 @@
     "glob": "^7.1.6"
   },
   "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/node": "^14.14.31",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.2.2"
   }
 }
