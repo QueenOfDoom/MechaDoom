@@ -26,7 +26,7 @@ export const run: RunFunction = async(client, message) => {
         doc = await quiz.findOneAndUpdate(filter, update, { new: true });
 
         if(questions.length === doc?.questions.length) {
-            message.channel.send("Successfully added question to Quiz!");
+            message.channel.send(`Successfully added question to Quiz! ${doc?.title}`);
         }
     }
 }

@@ -9,11 +9,16 @@ const filter = (reaction: MessageReaction, user: User) => {
 
 async function handle(collected: Collection<string, MessageReaction>, msg: Message, quizID: number): Promise<void> {
     const reaction = collected.first();
+    const qID: number = quizID;
     if(reaction?.emoji.name === '👈') {
         if(quizID > 0) quizID--;
     } else if(reaction?.emoji.name === '👉') {
-        if(await quiz.findOne({ identifier: quizID+1 }) !== undefined) quizID++;
+        let x = await quiz.findOne({ identifier: quizID+1 });
+        if(x !== null) quizID++;
     }
+    
+    if(qID == quizID) return;
+
     let doc = await quiz.findOne({ identifier: quizID });
     msg.edit('', {
         embed: {

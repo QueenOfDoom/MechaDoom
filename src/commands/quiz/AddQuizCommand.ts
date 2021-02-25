@@ -17,7 +17,7 @@ export const run: RunFunction = async(client, message) => {
             questions: []
         }
         ).then((doc) => {
-            console.log(`Successfully created Quiz (ID: ${identifier})!`);
+            message.channel.send(`Successfully created Quiz "${tokens[1]}" (ID: ${identifier})!`);
         });
     } else {
         message.channel.send("Too many arguments!");
