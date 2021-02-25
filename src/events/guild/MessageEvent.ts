@@ -1,13 +1,12 @@
 import { RunFunction } from '../../interfaces/Event';
 import { Message } from 'discord.js';
 import { Command } from '@/interfaces/Command';
-
-var prefix: string = "<";
+import { prefix } from '@/client/ClientCache';
 
 export const run: RunFunction = async(client, message: Message) => {
     if(message.author.bot || !message.guild) return;
     // Message Handling
-    if(/(^i('|’)?m|^i am) .+/.test(message.content.toLowerCase()) && message.content.length < 25) {
+    if(/(^(i|l)('|’|`|′)?m|^(i|l) am) .+/.test(message.content.toLowerCase()) && message.content.length < 25) {
         message.reply(`Hi,${message.content.substring(message.content.indexOf('m')+1)}. I'm dad!`);
     }
 
@@ -15,7 +14,8 @@ export const run: RunFunction = async(client, message: Message) => {
     // Command Handling
     const args: string[] = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd: string = args.shift() || "help";
-    const command: Command = <Command> client.commands.get(cmd);
+    const command: Command = <Command> client.commands.get(cmd) 
+        || client.commands.get(client.aliases.get(cmd) || "help");
     if(!command) return;
     command
         .run(client, message, args)

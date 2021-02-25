@@ -13,10 +13,13 @@
   "author": "Doomer",
   "license": "MIT",
   "dependencies": {
+    "@typegoose/typegoose": "^7.4.8",
+    "@types/mongoose": "^5.10.3",
     "consola": "^2.15.3",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "glob": "^7.1.6"
+    "glob": "^7.1.6",
+    "mongoose": "^5.10.18"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

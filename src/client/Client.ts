@@ -6,16 +6,20 @@ import { Config } from '../interfaces/Config';
 import { Command } from '../interfaces/Command';
 import { Event } from '../interfaces/Event';
 
+import { initCache } from './ClientCache';
+
 const globPromise = promisify(glob);
 
 class Bot extends Client {
     public config!: Config;
     public commands: Collection<string, Command> = new Collection();
+    public aliases: Collection<string, string> = new Collection();
     public events: Collection<string, Event> = new Collection();
     public constructor() {
         super({ ws: { intents: Intents.ALL }, messageCacheLifetime: 180, messageCacheMaxSize: 200, messageEditHistoryMaxSize: 200, messageSweepInterval: 180 });
     };
     public async start(config: Config): Promise<void> {
+        initCache();
         this.config = config;
         this.login(config.token);
 
@@ -24,7 +28,9 @@ class Bot extends Client {
         commandFiles.map(async(value: string) => {
             const file: Command = await import(value);
             this.commands.set(file.name, file);
-
+            if(file.aliases?.length) {
+                file.aliases.map((value: string) => this.aliases.set(value, file.name));
+            }
         });
         
         // Event Collection
