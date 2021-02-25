@@ -8,12 +8,13 @@ export const run: RunFunction = async(client, message) => {
     if(tokens.length <= 1) {
         message.channel.send("Current Prefix is: `" + prefix + "`");
     } else if(tokens.length == 2) {
-        config.findOneAndUpdate( {},
+        await config.findOneAndUpdate( {},
             {
                 $set: {prefix: tokens[1]}
             }
-        ).then(() => {
+        ).then((doc) => {
             updateCache();
+            client.user?.setUsername(`[${tokens[1]}] Doom Doom`);
             message.channel.send("Prefix changed to: `" + tokens[1] + "`");
         });
     } else {

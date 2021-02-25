@@ -38,4 +38,4 @@ class Quiz {
 }
 const quiz = getModelForClass(Quiz);
 
-export { config, quiz };
+export { config, quiz, Question };
