@@ -9,9 +9,9 @@ export const run: RunFunction = async(client, message: Message) => {
     if(/(^(i|l)('|’|`|′)?m|^(i|l) am) .+/.test(message.content.toLowerCase()) && message.content.length < 25) {
         const value: number = Math.random();
         if(value < 0.85) {
-            message.reply(`Hi,${message.content.substring(message.content.indexOf('m')+1)}. I'm dad!`);
+            message.reply(`Hi,${message.content.substring(message.content.toLowerCase().indexOf('m')+1)}. I'm dad!`);
         } else {
-            message.reply(`Hi,${message.content.substring(message.content.indexOf('m')+1)}. I'm shy <a:imshy:788145616256892949>`);
+            message.reply(`Hi,${message.content.substring(message.content.toLowerCase().indexOf('m')+1)}. I'm shy <a:imshy:788145616256892949>`);
         }
     }
     if(/who is (awesome|epic|cool|legendary|boppin|smart|the best)\?/.test(message.content.toLowerCase())) {
