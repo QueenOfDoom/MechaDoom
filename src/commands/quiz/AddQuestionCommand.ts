@@ -5,9 +5,9 @@ import { prefix } from '../../client/ClientCache';
 export const run: RunFunction = async(client, message) => {
     var tokens: string[] = message.content.substring(prefix.length).split(/;+/g);
     var pretokens: string[] = tokens[0].split(/ +/g, 3);
-    if(tokens.length < 5) {
-        message.channel.send("Syntax is: `addquestion [quiz-id] [question-with-spaces]?; [correct answer]; [wrong answer 1]; [wrong answer 2]; ...;`");
-    } else if(tokens.length >= 5) {
+    if(tokens.length < 3) {
+        message.channel.send("Syntax is: `addquestion [quiz-id] [question-with-spaces]?; [correct answer]; [wrong answer 1]; [wrong answer 2]; ...`");
+    } else if(tokens.length >= 3) {
         var question: Question = new Question();
         question.question = tokens[0].substring(tokens[0].indexOf(pretokens[2]));
         question.correct = tokens[1];
@@ -33,4 +33,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'addquestion';
-export const description: string = 'Adds a question to a quiz!';
+export const description: string = 'Adds a question to a quiz! Avoid Spaces inbetween `;`. The last answer should __not__ have a `\'` at the end!';

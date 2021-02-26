@@ -41,11 +41,6 @@ async function displayQuestion(question: Question, message: Message, client: Bot
 }
 
 export const run: RunFunction = async(client, message) => {
-    if(message.author.id !== "756757056941326397") {
-        message.reply("I THINK I WAS CLEAR WHEN I SAID DON'T TOUCH THIS! <a:tantrum:789253062798868520>"); 
-        return;
-    }
-
     var tokens: string[] = message.content.substring(prefix.length).split(/ +/g);
     if(tokens.length > 2) {
         message.channel.send("Syntax is: `playquiz [id]`");
@@ -60,6 +55,7 @@ export const run: RunFunction = async(client, message) => {
                     await displayQuestion(q, message, client);
                 }
                 message.reply("You scored: " + points + "!");
+                points = 0;
             } else {
                 message.reply("No such quiz found!");
             }
@@ -70,4 +66,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'playquiz';
-export const description: string = 'WORK IN PROGRESS! DO NOT TOUCH!';
+export const description: string = 'Works now, finally!';
