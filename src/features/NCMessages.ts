@@ -4,10 +4,11 @@ import { Message, TextChannel } from "discord.js";
 
 let messageCount = 0;
 let mudaeToGeneral = 0;
+let snow_chance = Math.round(Math.random()*1000);
 
 export function handleMessages(message: Message) {
     messageCount++;
-    console.log("Message Received! (" + mudaeToGeneral + " / " + messageCount + ")");
+    console.log("Message Received! (" + mudaeToGeneral + " / " + snow_chance + " / " + messageCount + ")");
     
     // DAD BOT
     if(/(^(i|l)('|’|`|′)?m|^(i|l) am) .+/.test(message.content.toLowerCase()) && message.content.length < 25) {
@@ -83,7 +84,7 @@ export function handleMessages(message: Message) {
         "Once upon a time, someone here thought they could go to a zoo far up in the mountains at 3am. *Yes, alcohol was involved.*",
         "Try to spy with your little eye the pokemon once crowned **King of Dance**.",
         "At least two people here have a tattoo. One has a boat, and another has a compass.",
-        "A bunch of us here are irl friends and an irl couple, way before this server existed. <:heart:0483f2b648dcc986d01385062052ae1c>",
+        "A bunch of us here are irl friends and an irl couple, way before this server existed. :heart:",
         "Lee is an underrated budding ukelele star. <:correct:704250174800789514>",
         "Most if not everyone here loves puns, but someone is trying to keep their love for it a secret. Go figure. <:VampySmug:789227387245166632> ",
         "If you need help with math homework, ping doomer 3 times: for notice, for good measure, and for love.",
@@ -112,5 +113,15 @@ export function handleMessages(message: Message) {
             }
     } else {
         mudaeToGeneral = 0;
+    }
+
+    // SNOWIEE-POPUP
+    if(messageCount % snow_chance === 0) {
+        (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general"))
+            .send('A Wild Snowiee wished you an epic day!').then(() => {
+                (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general"))
+                    .send('https://cdn.discordapp.com/attachments/760524902712344607/813888811451809872/84b80b16-1d16-4684-8202-9374fe2c3794.png');
+            });
+        snow_chance = Math.round(Math.random()*1000);
     }
 }
