@@ -26,3 +26,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'random';
+export const description: string = "Generates either a random Number, a random number between 0 and an upper boundary or a random number in an interval!";

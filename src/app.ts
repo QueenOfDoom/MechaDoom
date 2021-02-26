@@ -6,4 +6,7 @@ dotenv.config();
 
 const conf: Config = {token: <string> process.env.token};
 
-new Bot().start(conf);
+let bot = new Bot();
+bot.start(conf);
+
+export { bot };

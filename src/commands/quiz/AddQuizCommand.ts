@@ -25,3 +25,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'addquiz';
+export const description: string = "Adds a Quiz to the Collection of Quizzes!";

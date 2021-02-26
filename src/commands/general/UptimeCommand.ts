@@ -10,3 +10,4 @@ export const run: RunFunction = async(client, message) => {
 
 export const name: string = 'uptime';
 export const aliases: string[] = ["up"];
+export const description: string = "Checks the current Bot Uptime!";

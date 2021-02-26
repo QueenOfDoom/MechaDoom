@@ -14,7 +14,7 @@ export const run: RunFunction = async(client, message) => {
             }
         ).then((doc) => {
             updateCache();
-            client.user?.setUsername(`[${tokens[1]}] Doom Doom`);
+            message.guild?.me?.setNickname(`[${tokens[1]}] Doom Doom`);
             message.channel.send("Prefix changed to: `" + tokens[1] + "`");
         });
     } else {
@@ -23,3 +23,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'prefix';
+export const description: string = "Shows the current Prefix and allows to change it!";

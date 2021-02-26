@@ -7,3 +7,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'ping';
+export const description: string = "Pings the bot and records the time to respond. Can be used to find network issues!";

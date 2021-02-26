@@ -16,14 +16,15 @@ export const run: RunFunction = async(client, message) => {
             question.wrong.push(tokens[i]);
         }
 
-        const filter = { identifier: Number.parseInt(pretokens[1]) };
+        const quizID = Number.parseInt(pretokens[1]);
 
-        let doc = await quiz.findOne({ filter });
-        var questions: Question[] = doc?.questions || [];
+        let doc = await quiz.findOne({ identifier: quizID });
+        // Changed to `Assert non-null!`
+        var questions: Question[] = doc!.questions!;
         questions.push(question);
 
         const update = { questions: questions };
-        doc = await quiz.findOneAndUpdate(filter, update, { new: true });
+        doc = await quiz.findOneAndUpdate({ identifier: quizID }, update, { new: true });
 
         if(questions.length === doc?.questions.length) {
             message.channel.send(`Successfully added question to Quiz! ${doc?.title}`);
@@ -32,3 +33,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'addquestion';
+export const description: string = 'Adds a question to a quiz!';

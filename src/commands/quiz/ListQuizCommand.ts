@@ -80,3 +80,4 @@ export const run: RunFunction = async(client, message) => {
 }
 
 export const name: string = 'listquiz';
+export const description: string = 'Lists either all quizes or the questions for a specific one!';
