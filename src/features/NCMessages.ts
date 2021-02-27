@@ -1,10 +1,16 @@
-// Non-Command Messages
+// Non-Command Messages 
+// [https://cloud.spennorex.net/index.php/s/ZtdsxD2ngpqkmmi]  
+// [https://trello.com/b/qp8OA4F8/server-projects]
 
 import { Message, TextChannel } from "discord.js";
 
 let messageCount = 0;
 let mudaeToGeneral = 0;
-let snow_chance = Math.round(Math.random()*1000);
+let snow_chance = Math.round(Math.random()*10000);
+
+function choose(array: any[]): any {
+    return array[Math.floor(Math.random()*array.length)];
+}
 
 export function handleMessages(message: Message) {
     messageCount++;
@@ -33,21 +39,19 @@ export function handleMessages(message: Message) {
             message.reply("<:no:794106108247146516>");
         } else message.reply("Of course!");
     }
-
-    // MEEP
-    if(/m(e+)p/.test(message.content.toLowerCase())) {
-        message.channel.send("Meep.");
+    
+    // WHERE IS ...?
+    if(/where is [\w -]+\??/.test(message.content.toLowerCase())) {
+        message.reply("Drinking water, hopefully!");
     }
 
-    // NO SWEARING
-    var anti_swear_users: string[] = ["225814327242915841", "322069361852416005", "329113620921450497"];
-    if(anti_swear_users.indexOf(message.author.id) !== -1) {
-        var inpolite: string[] = ["fuck", "shut up", "hoe", "ass", "hell", "damn", "darnit", "gdi", "wretch"];
-        for(let i = 0; i < inpolite.length; i++) {
-            if(message.content.toLowerCase().indexOf(inpolite[i]) !== -1) {
-                message.reply("<:baka:789210166184640552>");
-            }
-        }
+    // MEEP
+    let mdrand = ["", "*", "**", "***", "__"];
+    let meepvar = ["meep", "Meep", "MEEP"];
+    let punctuation = ["", ".", "!", "?", "!?"];
+    if(/m(e+)p/.test(message.content.toLowerCase())) {
+        let md = choose(mdrand);
+        message.channel.send(md + choose(meepvar) + md + choose(punctuation));
     }
 
     // G'NIGHT!
@@ -73,7 +77,7 @@ export function handleMessages(message: Message) {
 
     // FACTS
     var facts: string[] = [
-        "Once upon a time Zoe was a full-time lurker, until she sang in an impromptu karaoke... Zoe has been active since. <a:beardancecute~1:813806680688427028>",
+        "Once upon a time Zoe was a full-time lurker, until she sang in an impromptu karaoke... Zoe has been active since. <a:beardancecute:813806680688427028>",
         "Before Kazu got buried with school work we had *late night talkshows with Kazu*.",
         "Promise once sang for 5 hours in her closet. <:YuriPeek:789227326730010644>",
         "Someone here is a cyborg in the making.",
@@ -90,29 +94,8 @@ export function handleMessages(message: Message) {
         "If you need help with math homework, ping doomer 3 times: for notice, for good measure, and for love.",
         "There is a giant in our midst that is constantly on the lookout for girls with short black hair. You have been warned."
     ];
-    if(messageCount % 100 === 0) {
-        let ran = Math.round(Math.random()*facts.length);
-        (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(facts[ran]);
-    }
-    
-    // ANTI-MUDAE
-    let mudaeChannels = [
-        "787908833971273768",
-        "787911987962576896",
-        "809820231870578700",
-        "809820279035396146"
-    ];
-
-    if(mudaeChannels.indexOf(message.channel.id) !== -1) {
-            if(!message.content.startsWith("$") && message.author.id !== "432610292342587392") mudaeToGeneral++;
-            if(mudaeToGeneral > 50) {
-                for(let i = 0; i < mudaeChannels.length; i++) {
-                    (<TextChannel> message!.guild!.channels.cache.find(channel => channel.id === mudaeChannels[i])).send("https://media.giphy.com/media/zCpYQh5YVhdI1rVYpE/giphy.gif");
-                    (<TextChannel> message!.guild!.channels.cache.find(channel => channel.id === mudaeChannels[i])).send("Return to <#783535582965530624>, you've been warned <a:kek:789227894806937612>!");
-                }
-            }
-    } else {
-        mudaeToGeneral = 0;
+    if(messageCount % 10000 === 0) {
+        (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(choose(facts));
     }
 
     // SNOWIEE-POPUP
@@ -122,6 +105,26 @@ export function handleMessages(message: Message) {
                 (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general"))
                     .send('https://cdn.discordapp.com/attachments/760524902712344607/813888811451809872/84b80b16-1d16-4684-8202-9374fe2c3794.png');
             });
-        snow_chance = Math.round(Math.random()*1000);
+        snow_chance = Math.round(Math.random()*10000);
     }
+
+    // DOOMER HENTAI
+    // I really do no enjoy adding this! Keep that in mind! :POUT:
+    if(message.content.toLowerCase().indexOf("doom") !== -1 && message.content.toLowerCase().indexOf("hentai") !== -1)
+        message.reply("<a:cutepout:789227728334487582>");
+
+    // SLEEP POLICE
+    if(message.content.toLowerCase().indexOf("go to sleep") !== -1 || 
+        message.content.toLowerCase().indexOf("get some sleep") !== -1 ||
+        message.content.toLowerCase().indexOf("why are you awake") !== -1) {
+        message.channel.send("Sleep Police comin' in hot!");
+    }
+
+    // PROMISE INNOCENCE 
+    if(message.author.id === "516282651469021185" && message.content.toLowerCase().indexOf("nani") !== -1) {
+        message.reply("You're so innocent, it's adorable <:smile:794329003216338984>");
+    }
+    
+    // ANTI-MUDAE [REMOVED]
+    // NO SWEARING [REMOVED]
 }

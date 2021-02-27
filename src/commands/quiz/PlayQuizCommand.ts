@@ -17,7 +17,7 @@ async function displayQuestion(question: Question, message: Message, client: Bot
     let shuffled = question.wrong
         .map(val => ({sort: Math.random(), value: val}))
         .sort((a, b) => a.sort - b.sort)
-        .map(val =>val.value);
+        .map(val => val.value);
 
 
     const embed: MessageEmbed = new MessageEmbed();

@@ -3,6 +3,9 @@ import { RunFunction } from '../../interfaces/Command';
 import { prefix } from '../../client/ClientCache';
 
 export const run: RunFunction = async(client, message) => {
+    // Failsafe!
+    if(message.content.endsWith(";")) message.content.substring(0, message.content.length-1);
+
     var tokens: string[] = message.content.substring(prefix.length).split(/;+/g);
     var pretokens: string[] = tokens[0].split(/ +/g, 3);
     if(tokens.length < 3) {
