@@ -116,7 +116,8 @@ export function handleMessages(message: Message) {
     // SLEEP POLICE
     if(message.content.toLowerCase().indexOf("go to sleep") !== -1 || 
         message.content.toLowerCase().indexOf("get some sleep") !== -1 ||
-        message.content.toLowerCase().indexOf("why are you awake") !== -1) {
+        message.content.toLowerCase().indexOf("why are you awake") !== -1 ||
+        message.content.toLowerCase().indexOf("you should sleep") !== -1) {
         message.channel.send("Sleep Police comin' in hot!");
     }
 
