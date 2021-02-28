@@ -68,13 +68,25 @@ export function handleSchedules(client: Bot) {
     ];
 
     // Every 2 Hours:
-    const rule = new schedule.RecurrenceRule();
-    rule.hour = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
-    rule.minute = 0;
-    
+    const rules = [
+        new schedule.RecurrenceRule(),
+        new schedule.RecurrenceRule()
+    ]
+    rules[0].hour = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
+    rules[0].minute = 0;
+    rules[1].hour = [16, 21, 1];
+    rules[1].minute = [0, 30];
+    rules[1].second = [0, 10, 20, 30, 40, 50];
+
     const reminders = [
-        schedule.scheduleJob(rule, () => {
+        schedule.scheduleJob(rules[0], () => {
             sendMessage(client, "703091755637145661", "general", "Remember to Hydrate <:water:789227387308998706>!");
+        })
+    ];
+
+    const promiseHomework = [
+        schedule.scheduleJob(rules[1], () => {
+            sendMessage(client, "703091755637145661", "bot-commands", "<@516282651469021185>, do your homework!");
         })
     ];
 }

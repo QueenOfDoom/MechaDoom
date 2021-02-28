@@ -125,6 +125,13 @@ export function handleMessages(message: Message) {
     if(message.author.id === "516282651469021185" && message.content.toLowerCase().indexOf("nani") !== -1) {
         message.reply("You're so innocent, it's adorable <:smile:794329003216338984>");
     }
+
+    // BOT INTRO
+    if(message.mentions !== undefined && message.mentions!.users!.first() !== undefined && 
+        message.mentions!.users!.first()!.id === "783261265035395123" &&
+        (message.content.indexOf("introduc") !== -1 || message.content.indexOf("hi") !== -1)) {
+        message.channel.send("Heyyo! I'm <@756757056941326397>'s Bot ^^! Hope you have a nice stay <3!");
+    }
     
     // ANTI-MUDAE [REMOVED]
     // NO SWEARING [REMOVED]
