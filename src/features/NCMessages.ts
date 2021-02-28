@@ -8,7 +8,7 @@ let messageCount = 0;
 let mudaeToGeneral = 0;
 let snow_chance = Math.round(Math.random()*10000);
 
-function choose(array: any[]): any {
+function choose<T>(array: T[]): T {
     return array[Math.floor(Math.random()*array.length)];
 }
 
