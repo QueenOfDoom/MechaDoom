@@ -5,7 +5,7 @@ import { prefix } from '@/client/ClientCache';
 
 export const run: RunFunction = async(client, message) => {
     var item: string = message.content.substring(prefix.length + name.length + 1) + "\n";
-    fs.appendFile('todo.txt', item, (err) => {
+    fs.appendFile('todo.txt', (message.author.username + ": " + item), (err) => {
         if (err) console.error(err);
 
         const exec = chproc.exec;

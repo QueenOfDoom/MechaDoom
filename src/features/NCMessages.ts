@@ -6,7 +6,7 @@ import { Message, TextChannel } from "discord.js";
 
 let messageCount = 0;
 let mudaeToGeneral = 0;
-let snow_chance = Math.round(Math.random()*10000);
+let snow_chance = Math.round(Math.random()*2500);
 
 function choose<T>(array: T[]): T {
     return array[Math.floor(Math.random()*array.length)];
@@ -48,7 +48,8 @@ export function handleMessages(message: Message) {
     // MEEP
     let mdrand = ["", "*", "**", "***", "__"];
     let meepvar = ["meep", "Meep", "MEEP"];
-    let punctuation = ["", ".", "!", "?", "!?"];
+    // very dirty fix to increase `""` probability xxxD
+    let punctuation = ["", "", "", "", "", "", ".", "!", "?", "!?"];
     if(/m(e+)p/.test(message.content.toLowerCase())) {
         let md = choose(mdrand);
         message.channel.send(md + choose(meepvar) + md + choose(punctuation));
@@ -91,10 +92,32 @@ export function handleMessages(message: Message) {
         "A bunch of us here are irl friends and an irl couple, way before this server existed. :heart:",
         "Lee is an underrated budding ukelele star. <:correct:704250174800789514>",
         "Most if not everyone here loves puns, but someone is trying to keep their love for it a secret. Go figure. <:VampySmug:789227387245166632> ",
-        "If you need help with math homework, ping doomer 3 times: for notice, for good measure, and for love.",
-        "There is a giant in our midst that is constantly on the lookout for girls with short black hair. You have been warned."
+        "If you need help with math homework, ping Doomer 3 times: for notice, for good measure, and for love.",
+        "There is a giant in our midst that is constantly on the lookout for girls with short black hair. You have been warned.",
+        "My hydration reminders are actually inspired by the original water man in this server. <:ShiroHeart:788455444452605983>",
+        "There's at least one person here who said they'd play the piano for us, and we're still waiting for it to happen." +
+        "https://tenor.com/view/kittycass-peachcat-cute-wiggle-patiently-gif-16485846",
+        "Audrey may be cashless but she's full of talent! Dig up <#788317717328298025> to see photos of her doodle, embroidery, quilling, and cooking! Also, she plays the saxophone. <:NadeYay:789210666833150023>!",
+        "We've got members here I've never met, as they're exclusively in Mudae channels where I'm banned. <:sadCat:788627176374796302>",
+        "At least one person here prefers yaoi over yuri... For the sake of universal peace, don't let snowiee know who they are." +
+        "https://tenor.com/view/secret-boss-baby-on-the-phone-gif-7991222",
+        "Maybe someday some of our YouTubers here will share their channel. Until then, let's all support their passion silently in our hearts, whoever these mysterious members are." +
+        "https://tenor.com/view/get-that-bread-go-for-gif-18646298",
+        "If you want to know how to make croissant taco rings, or what they are, ask ~~mom~~ dad. <:doggoHehe:788627313231003689>!",
+        "Did you know? Years before becoming the Dance King, he was the lead for a highschool musical." +
+        "https://tenor.com/view/zac-efron-fabulous-sass-sassy-strut-gif-4622511",
+        "There is a troll who'll play you the coconut song if you fall asleep at the auditorium. <:doggoHehe:788627313231003689>" +
+        "https://tenor.com/view/kakamora-gif-9714137",
+        "Want to talk about SCPs? Our resident SCP SlimeLovesYou is probably busy studying human life right now, but they'd love to tell you all about it... someday." +
+        "https://tenor.com/view/someday-not-tomorrow-not-today-maybe-maybe-not-today-gif-13346626",
+        "If promise has her closet to hide in for karaoke, a resident fruit hides in the bathroom (to the dismay of her father)." +
+        "https://tenor.com/view/knock-knocking-on-the-door-open-the-door-detective-vic-dave-bautista-gif-13995780",
+        "Once upon a January karaoke session, Niphy thought she could get away with not singing by doing her laundry in between... In the end she sang Lucky (Jason Mraz) in acapella. <:umu:789227387278983188>",
+        "Kami's voice sounds similar to that of Morgan Freeman's. *Make of that what you will.* <:doggoHehe:788627313231003689>",
+        "Someone here loves curry so much that they named themselves after its leaves. :curry:",
+        "We have a commuting Martian in our midst. https://tenor.com/view/executivo-cat-ride-mars-gif-16618606"
     ];
-    if(messageCount % 10000 === 0) {
+    if(messageCount % 250 === 0) {
         (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(choose(facts));
     }
 
@@ -105,7 +128,7 @@ export function handleMessages(message: Message) {
                 (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general"))
                     .send('https://cdn.discordapp.com/attachments/760524902712344607/813888811451809872/84b80b16-1d16-4684-8202-9374fe2c3794.png');
             });
-        snow_chance = Math.round(Math.random()*10000);
+        snow_chance = Math.round(Math.random()*2500);
     }
 
     // DOOMER HENTAI

@@ -1,6 +1,7 @@
 // Scheduled Recurrent Messages
 import { Bot } from '@/client/Client';
 import { MessageEmbed, TextChannel } from 'discord.js';
+import { killSnooze, snooze } from '@/commands/general/IAmWorkingCommand';
 import * as schedule from 'node-schedule';
 
 export function handleSchedules(client: Bot) {
@@ -84,9 +85,16 @@ export function handleSchedules(client: Bot) {
         })
     ];
 
+    let promiseReminder = 6;
     const promiseHomework = [
         schedule.scheduleJob(rules[1], () => {
-            sendMessage(client, "703091755637145661", "bot-commands", "<@516282651469021185>, do your homework!");
+            if(promiseReminder === 6) killSnooze();
+            if(!snooze) sendMessage(client, "703091755637145661", "bot-commands", "<@516282651469021185>, do your homework!");
+            
+            promiseReminder--;
+            if(promiseReminder === 0) {
+                promiseReminder = 6;
+            }
         })
     ];
 }
