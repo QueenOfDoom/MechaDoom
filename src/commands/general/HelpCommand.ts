@@ -17,7 +17,6 @@ export const run: RunFunction = async(client, message) => {
     embed.setFooter("Isn't this epic?");
 
     message.channel.send(embed);
-    message.delete();
 }
 
 export const name: string = 'help';
