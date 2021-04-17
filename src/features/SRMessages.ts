@@ -75,25 +75,27 @@ export function handleSchedules(client: Bot) {
     ]
     rules[0].hour = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
     rules[0].minute = 0;
-    rules[1].hour = [16, 21, 1];
-    rules[1].minute = [0, 30];
-    rules[1].second = [0, 10, 20, 30, 40, 50];
+    rules[1].minute = [0, 10, 20, 30, 40, 50];
+    rules[1].second = [0, 6, 12, 18, 24, 30, 36, 42, 48, 56];
 
     const reminders = [
         schedule.scheduleJob(rules[0], () => {
-            sendMessage(client, "703091755637145661", "general", "Remember to Hydrate <:water:789227387308998706>!");
+            if(Math.random() > 0.25)
+                sendMessage(client, "703091755637145661", "general", "Remember to Hydrate and Eat <:water:789227387308998706> <a:chomp:793654953704947725>!");
+            else
+                sendMessage(client, "703091755637145661", "general", "It's sad that sometimes y'all ignore my reminders q.q!");
         })
     ];
 
-    let promiseReminder = 6;
+    let promiseReminder = 10;
     const promiseHomework = [
         schedule.scheduleJob(rules[1], () => {
-            if(promiseReminder === 6) killSnooze();
-            if(!snooze) sendMessage(client, "703091755637145661", "bot-commands", "<@516282651469021185>, do your homework!");
+            if(promiseReminder === 10) killSnooze();
+            //if(!snooze) sendMessage(client, "703091755637145661", "bot-commands", "<@516282651469021185>, I accepted your challenge! You asked for it! Do your homework, your dishes, your food and stop being salty <a:tantrum:789253062798868520>");
             
             promiseReminder--;
             if(promiseReminder === 0) {
-                promiseReminder = 6;
+                promiseReminder = 10;
             }
         })
     ];

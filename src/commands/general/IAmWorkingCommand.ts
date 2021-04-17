@@ -13,6 +13,13 @@ export const run: RunFunction = async(client, message) => {
 export const killSnooze = () => {
     snooze = false;
 };
+
+export const change = () => {
+    name = "" + Math.floor((Math.random()*1000000)+1);
+};
+
 export { snooze };
-export const name: string = 'ImWorkingDammit';
-export const description: string = "[Exlusive: Promise] Snooze the Homework Reminder.";
+export var name: string = 'WhyIsThisCommandSuddenlySoFrickingLong';
+export const description: string = "[Exlusive: Promise] Snooze the Homework Reminder. [Edit: To make it harder xD]";
+export const aliases: string[] = ["IWD"];
+

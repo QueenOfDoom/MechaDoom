@@ -5,6 +5,10 @@ import { prefix } from '@/client/ClientCache';
 
 export const run: RunFunction = async(client, message) => {
     var item: string = message.content.substring(prefix.length + name.length + 1) + "\n";
+    if(item.length < 4) {
+        message.reply("Please supply a request!");
+    }
+
     fs.appendFile('todo.txt', (message.author.username + ": " + item), (err) => {
         if (err) console.error(err);
 
