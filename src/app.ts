@@ -10,3 +10,5 @@ let bot = new Bot();
 bot.start(conf);
 
 export { bot };
+
+// Yeah, that's all I changed - just to say that your commit messages are inferior!
