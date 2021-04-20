@@ -88,7 +88,7 @@ export function handleMessages(message: Message) {
     if(messageCount % 250 === 0) {
         const fact: Fact = choose(facts);
         const embed: MessageEmbed = new MessageEmbed().setTitle(fact.fact);
-        if(fact.image) embed.setImage(fact.image);
+        if(fact.image) embed['image'] = { url: fact.image };
         if(!fact.rarity) fact.rarity = 'Common';
 
         if(fact.rarity === 'Common') {
@@ -102,7 +102,7 @@ export function handleMessages(message: Message) {
         }
         embed.setFooter(`${fact.rarity} Fact #${facts.indexOf(fact)}`);
 
-        (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send("");
+        (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(embed);
     }
 
     // SNOWIEE-POPUP
