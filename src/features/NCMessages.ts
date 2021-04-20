@@ -83,12 +83,12 @@ export function handleMessages(message: Message) {
         "Promise once sang for 5 hours in her closet. <:YuriPeek:789227326730010644>",
         "Someone here is a cyborg in the making.",
         "Someone here is in the making of a cyborg",
-        "Underneath those swears and curses, snowiee is an adorable potato who loves hugs.",
+        "Underneath those swears and curses, snowiee is an adorable nekomimi who loves hugs.",
         "My maker is a simp who refuses to be simped. <:HinaPensiveSip:793239405459537920>",
         "Someone here once had a space cookie too many just before Christmas.",
         "Once upon a time, someone here thought they could go to a zoo far up in the mountains at 3am. *Yes, alcohol was involved.*",
         "Try to spy with your little eye the pokemon once crowned **King of Dance**.",
-        "At least two people here have a tattoo. One has a boat, and another has a compass.",
+        "At least three people here have a tattoo. One has a boat, another has a compass, and one has the badass fairy tail emblem.",
         "A bunch of us here are irl friends and an irl couple, way before this server existed. :heart:",
         "Lee is an underrated budding ukelele star. <:correct:704250174800789514>",
         "Most if not everyone here loves puns, but someone is trying to keep their love for it a secret. Go figure. <:VampySmug:789227387245166632> ",
@@ -103,7 +103,7 @@ export function handleMessages(message: Message) {
         "https://tenor.com/view/secret-boss-baby-on-the-phone-gif-7991222",
         "Maybe someday some of our YouTubers here will share their channel. Until then, let's all support their passion silently in our hearts, whoever these mysterious members are." +
         "https://tenor.com/view/get-that-bread-go-for-gif-18646298",
-        "If you want to know how to make croissant taco rings, or what they are, ask ~~mom~~ dad. <:doggoHehe:788627313231003689>!",
+        "If you want to know how to make croissant taco rings, or what they are, ask ~~server mom~~ dad. <:doggoHehe:788627313231003689>!",
         "Did you know? Years before becoming the Dance King, he was the lead for a highschool musical." +
         "https://tenor.com/view/zac-efron-fabulous-sass-sassy-strut-gif-4622511",
         "There is a troll who'll play you the coconut song if you fall asleep at the auditorium. <:doggoHehe:788627313231003689>" +
@@ -115,7 +115,26 @@ export function handleMessages(message: Message) {
         "Once upon a January karaoke session, Niphy thought she could get away with not singing by doing her laundry in between... In the end she sang Lucky (Jason Mraz) in acapella. <:umu:789227387278983188>",
         "Kami's voice sounds similar to that of Morgan Freeman's. *Make of that what you will.* <:doggoHehe:788627313231003689>",
         "Someone here loves curry so much that they named themselves after its leaves. :curry:",
-        "We have a commuting Martian in our midst. https://tenor.com/view/executivo-cat-ride-mars-gif-16618606"
+        "We have a commuting Martian in our midst. https://tenor.com/view/executivo-cat-ride-mars-gif-16618606",
+        "If you know who I'm referring to, kindly ping to say we miss him :pensive: :pleading_face:",
+        "Idk, somehow I just feel like throwing this out there <a:kek:789227894806937612> https://discord.com/channels/703091755637145661/787906866679906325/792563845222236172",
+        "That one time yuru camp was being streamed and Alimo was like, \"iirc they have sony-looking phones so maybe 2014s-2016/17s (design died around then)\" <:animeglasses:730380844534857798>" +
+        "https://tenor.com/view/flip-phone-dj-flip-phone-dj-hamster-gif-20535938",
+        "In the early days Guren would probably extort you for Mudae characters, but at Genshin Guren is like:" + 
+        "https://tenor.com/view/baby-throw-window-money-cash-gif-16491349",
+        "Someone here has a webnovel published somewhere, and a coming-out-soon webtoon collab with another resident. <a:yay:789253098211246150>" + 
+        "https://tenor.com/view/shaq-shaquille-o-neal-wiggle-evil-smile-gif-15358842",
+        "There are ships slowly building themselves, let's not jinx 'em and wait till they officially sail~" + 
+        "https://tenor.com/view/binoculars-ship-see-boat-gif-17952712",
+        "Sometimes I think Kami doesn't particularly like me because of how I spammed at Mudae before and seem to only make fun of him." + 
+        "But I swear with my existence as a bot that he's actually a really cool person who cares for his friends and if you don't believe me, challenge him to a difficult song on *Bang Dream! Girls Band Party!*." + 
+        "<:coolthumbsup:783558249210576896> <a:CoolParrotDance:794107578590167040> ",
+        "As a bot who's always low-key worried about everyone's health, I sometimes wonder whether Bread will still grow taller when they lack sleep..." + 
+        "https://tenor.com/view/bruce-almighty-comedy-jim-carrey-tired-sleep-gif-13319643",
+        "For your technical and hardware concerns, please holler \"meep!\" " + 
+        "https://tenor.com/view/meep-meep-moving-meep-weird-scared-gif-16804748",
+        "Someone requested that I tell all you cool people of how they're getting into college for free starting on the 20th of April 2021 because they taught a college student what adjectives are... " + 
+        "But I'm feeling like a petty bot rn and won't say who like they want me to <a:kek:789227894806937612>"
     ];
     if(messageCount % 250 === 0) {
         (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(choose(facts));
