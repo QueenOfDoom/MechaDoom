@@ -13,6 +13,7 @@ let facts: Fact[] = JSON.parse(fs.readFileSync('assets/facts.json', 'utf-8'));
 interface Fact {
     fact: string,
     image: string,
+    url: string,
     rarity: string
 }
 
@@ -84,22 +85,20 @@ export function handleMessages(message: Message) {
         message.channel.send("https://tenor.com/view/cute-kitten-alone-sleep-tucked-in-gif-14814077");
     }
 
+    let rarity = {
+        'Common':    '#add8e6',
+        'Rare':      '#1919ff',
+        'Epic':      '#660099',
+        'Legendary': '#990000'
+    };
+
     // FACTS
     if(messageCount % 250 === 0) {
         const fact: Fact = choose(facts);
         const embed: MessageEmbed = new MessageEmbed().setTitle(fact.fact);
-        if(fact.image) embed['image'] = { url: fact.image };
-        if(!fact.rarity) fact.rarity = 'Common';
-
-        if(fact.rarity === 'Common') {
-            embed.setColor("#add8e6");
-        } else if(fact.rarity === 'Rare') {
-            embed.setColor("#1919FF");
-        } else if(fact.rarity === 'Epic') {
-            embed.setColor("#660099");
-        } else if(fact.rarity === 'Legendary') {
-            embed.setColor("#990000");
-        }
+        if(fact.image) embed.setImage(fact.image);
+        if(fact.url) embed.setURL(fact.url);
+        embed.setColor(rarity[fact.rarity] || '#add8ef');
         embed.setFooter(`${fact.rarity} Fact #${facts.indexOf(fact)}`);
 
         (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(embed);
