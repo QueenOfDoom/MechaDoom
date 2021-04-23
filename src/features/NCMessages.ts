@@ -10,6 +10,19 @@ let mudaeToGeneral = 0;
 let snow_chance = Math.round(Math.random()*2500);
 let facts: Fact[] = JSON.parse(fs.readFileSync('assets/facts.json', 'utf-8'));
 
+let parseRarity = {
+    'Common':    1,
+    'Fun':       65,
+    'Trivia':    20,
+    'Rare':      5,
+    'Epic':      10
+};
+
+let factWeight = 0;
+for(let fact of facts) {
+    factWeight += (parseRarity[fact.rarity] || 0);
+}
+
 interface Fact {
     fact: string,
     image: string,
@@ -21,6 +34,15 @@ function choose<T>(array: T[]): T {
     return array[Math.floor(Math.random()*array.length)];
 }
 
+function chooseFact(): Fact | undefined {
+    let rand = Math.random() * factWeight;
+    let counter = 0;
+    for(let fact of facts) {
+        counter += (parseRarity[fact.rarity] || 0);
+        if(rand <= counter) return fact;
+    }
+    return undefined;
+}
 
 export function handleMessages(message: Message) {
     messageCount++;
@@ -85,21 +107,26 @@ export function handleMessages(message: Message) {
         message.channel.send("https://tenor.com/view/cute-kitten-alone-sleep-tucked-in-gif-14814077");
     }
 
-    let rarity = {
+    let rarityColor = {
         'Common':    '#add8e6',
+        'Fun':       '#e0bc50',
+        'Trivia':    '#50e053',
         'Rare':      '#1919ff',
-        'Epic':      '#660099',
-        'Legendary': '#990000'
+        'Epic':      '#660099'
     };
 
     // FACTS
     if(messageCount % 100 === 0) {
-        const fact: Fact = choose(facts);
+        const fact: Fact | undefined = chooseFact();
+        if(fact === undefined) {
+            console.log('FACT ERROR!');
+            return;
+        }
         const embed: MessageEmbed = new MessageEmbed().setTitle(fact.fact);
         if(fact.image) embed.setImage(fact.image);
         if(fact.url) embed.setURL(fact.url);
-        embed.setColor(rarity[fact.rarity] || '#add8ef');
-        embed.setFooter(`${fact.rarity || 'Common'} Fact #${facts.indexOf(fact)}`);
+        embed.setColor(rarityColor[fact.rarity] || '#add8ef');
+        embed.setFooter(`${(fact.rarity && fact.rarity === '') ? fact.rarity : 'Common'} Fact #${facts.indexOf(fact)}`);
 
         (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(embed);
     }
