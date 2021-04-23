@@ -119,6 +119,10 @@ export function handleMessages(message: Message) {
     if(message.content.toLowerCase().indexOf("doom") !== -1 && message.content.toLowerCase().indexOf("hentai") !== -1)
         message.reply("<a:cutepout:789227728334487582>");
 
+    // TARI SING
+    if(message.content.toLowerCase().indexOf("sing") !== -1)
+        message.reply("<@!754575352998658049> - someone's singing <:OWO:789210742409920603>!");
+
     // SLEEP POLICE
     if(message.content.toLowerCase().indexOf("go to sleep") !== -1 || 
         message.content.toLowerCase().indexOf("get some sleep") !== -1 ||
