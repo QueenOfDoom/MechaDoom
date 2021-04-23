@@ -126,7 +126,7 @@ export function handleMessages(message: Message) {
         if(fact.image) embed.setImage(fact.image);
         if(fact.url) embed.setURL(fact.url);
         embed.setColor(rarityColor[fact.rarity] || '#add8ef');
-        embed.setFooter(`${(!fact.rarity || fact.rarity === '') ? fact.rarity : 'Common'} Fact #${facts.indexOf(fact)}`);
+        embed.setFooter(`${(!fact.rarity || fact.rarity === '') ? 'Common' : fact.rarity} Fact #${facts.indexOf(fact)}`);
 
         (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(embed);
     }
