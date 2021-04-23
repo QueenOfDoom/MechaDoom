@@ -93,13 +93,13 @@ export function handleMessages(message: Message) {
     };
 
     // FACTS
-    if(messageCount % 250 === 0) {
+    if(messageCount % 100 === 0) {
         const fact: Fact = choose(facts);
         const embed: MessageEmbed = new MessageEmbed().setTitle(fact.fact);
         if(fact.image) embed.setImage(fact.image);
         if(fact.url) embed.setURL(fact.url);
         embed.setColor(rarity[fact.rarity] || '#add8ef');
-        embed.setFooter(`${fact.rarity} Fact #${facts.indexOf(fact)}`);
+        embed.setFooter(`${fact.rarity || 'Common'} Fact #${facts.indexOf(fact)}`);
 
         (<TextChannel> message!.guild!.channels.cache.find(channel => channel.name === "general")).send(embed);
     }
