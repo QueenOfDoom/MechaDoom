@@ -147,7 +147,8 @@ export function handleMessages(message: Message) {
         message.reply("<a:cutepout:789227728334487582>");
 
     // TARI SING
-    if(message.content.toLowerCase().indexOf("sing") !== -1)
+    if(message.content.toLowerCase().includes(" sing") || 
+        (message.content.toLowerCase()).startsWith("sing"))
         message.reply("<@!754575352998658049> - someone's singing <:OWO:789210742409920603>!");
 
     // SLEEP POLICE
