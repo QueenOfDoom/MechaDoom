@@ -116,7 +116,7 @@ export function handleMessages(message: Message) {
     };
 
     // FACTS
-    if(messageCount % 100 === 0) {
+    if(messageCount % 300 === 0) {
         const fact: Fact | undefined = chooseFact();
         if(fact === undefined) {
             console.log('FACT ERROR!');
